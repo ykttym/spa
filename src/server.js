@@ -11,8 +11,8 @@ const serverRouter = require('./server/serverRouter')
 const apiRouter = require('./server/apiRouter')
 
 app.use("/api/", apiRouter);
-app.use("/web/", serverRouter);
 app.use("/build", express.static('build'));
+app.use("/", serverRouter);
 
 
 app.listen(3000, function () {
