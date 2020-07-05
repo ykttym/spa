@@ -1,4 +1,5 @@
 import React from 'react'
+import { fetchHome } from '../core/api'
 
 const Home = ({staticContext}) => {
   console.log('staticContext', staticContext)
@@ -9,4 +10,6 @@ const Home = ({staticContext}) => {
     </main>
   )
 }
+
+Home.getData = fetchHome
 export default Home

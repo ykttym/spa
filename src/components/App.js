@@ -1,8 +1,6 @@
 import React from 'react'
 import { Route, Switch, NavLink } from 'react-router-dom';
-import Home from './Home'
-import User from './User'
-import NotFound from './NotFound'
+import routes from '../core/routes.js'
 
 const App = () => {
   return (
@@ -17,15 +15,9 @@ const App = () => {
       </ul>
 
       <Switch>
-        <Route
-          exact
-          path="/"
-          component={Home}
-        />
-        <Route path="/user" component={User} />
-        <Route
-          component={NotFound}
-        />
+        {routes.map(route => (
+          <Route key={route.path} exact={route.path === '/'} {...route} />
+        ))}
       </Switch>
     </div>
   )

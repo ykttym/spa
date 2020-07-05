@@ -1,19 +1,31 @@
 const express = require('express')
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import { StaticRouter } from 'react-router-dom'
+import { StaticRouter, matchPath } from 'react-router-dom'
 import Document from '../components/Document'
 import App from '../components/App'
-import { fetchHome } from '../core/api'
+import routes from '../core/routes'
 
 const router = express.Router();
 
 router.get("*", async function (req, res, next) {
   console.log('server req:', req.url)
   let data = {}
-  try {
-    data = await fetchHome()
-  } catch (error) {}
+  let getData = null
+  routes.some(route => {
+    const match = matchPath(req.path, route);
+    if (match) {
+      getData = (route.component || {}).getData
+    }
+    return match
+  });
+  
+  if (typeof getData === 'function') {
+    try {
+      data = await getData()
+    } catch (error) { }
+  }
+
   const appString = ReactDOMServer.renderToString(
     <StaticRouter
       location={req.url}

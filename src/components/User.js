@@ -1,4 +1,5 @@
 import React  from 'react'
+import { fetchUser } from '../core/api'
 
 const User = () => {
   return (
@@ -8,4 +9,6 @@ const User = () => {
     </main>
   )
 }
+
+User.getData= fetchUser
 export default User
