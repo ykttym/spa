@@ -4,14 +4,20 @@ import ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import Document from '../components/Document'
 import App from '../components/App'
+import { fetchHome } from '../core/api'
 
 const router = express.Router();
 
-router.get("*", function (req, res, next) {
+router.get("*", async function (req, res, next) {
   console.log('server req:', req.url)
+  let data = {}
+  try {
+    data = await fetchHome()
+  } catch (error) {}
   const appString = ReactDOMServer.renderToString(
     <StaticRouter
       location={req.url}
+      context={data}
     >
       <App />
     </StaticRouter>)
