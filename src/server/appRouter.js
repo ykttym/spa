@@ -34,7 +34,7 @@ router.get("*", async function (req, res, next) {
       <App />
     </StaticRouter>)
 
-  const html = ReactDOMServer.renderToStaticMarkup(<Document>
+  const html = ReactDOMServer.renderToStaticMarkup(<Document data={data}>
     {appString}
   </Document>)
   console.log('html', html)

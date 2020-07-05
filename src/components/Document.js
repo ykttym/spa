@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Document = ({ children }) => (
+const Document = ({ children, data }) => (
   <html lang="en">
     <head>
       <meta charSet="UTF-8" />
@@ -10,6 +10,12 @@ const Document = ({ children }) => (
     <body>
       <div id="root" dangerouslySetInnerHTML={{ __html: children }} />
     </body>
+    <script
+      dangerouslySetInnerHTML={{
+        __html:
+          `window.__APP_DATA__=${JSON.stringify(data)}`
+      }}
+    />
     <script src="/build/main.js"></script>
   </html>
 )
