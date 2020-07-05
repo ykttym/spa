@@ -1,15 +1,17 @@
 const express = require('express')
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import Document from './components/Document'
-import App from './components/App'
+import Document from '../components/Document'
+import App from '../components/App'
 
 const router = express.Router();
 
 const appString = ReactDOMServer.renderToString(<App/>)
+
 const html = ReactDOMServer.renderToStaticMarkup(<Document>
   {appString}
 </Document>)
+console.log('html', html)
 
 router.get("/", function (req, res, next) {
   res.status(200);

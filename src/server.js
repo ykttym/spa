@@ -7,12 +7,12 @@ require('@babel/register')({
 })
 const express = require('express');
 const app = express();
-const serverRouter = require('./serverRouter')
-const apiRouter = require('./apiRouter')
+const serverRouter = require('./server/serverRouter')
+const apiRouter = require('./server/apiRouter')
 
-app.use(express.static('build'));
 app.use("/api/", apiRouter);
-app.use("/", serverRouter);
+app.use("/web/", serverRouter);
+app.use("/build", express.static('build'));
 
 
 app.listen(3000, function () {

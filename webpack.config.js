@@ -3,6 +3,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/client.js',
+  mode: 'development',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'main.js'
